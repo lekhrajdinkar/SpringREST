@@ -24,9 +24,10 @@ public class FirstService {
 			return new FirstBean("Hello World");
 		}
 		
-		///hello-world/path-variable/in28minutes
-		@GetMapping(path = "/hello-world/path-variable/{name}")
-		public FirstBean helloWorldPathVariable(@PathVariable String name) {
+		
+		@GetMapping(path = "/hello-world/path-variable/{name1}")
+		public FirstBean helloWorldPathVariable(@PathVariable(name="name1") String name) {
+			System.out.println("path Param : " + name);
 			return new FirstBean(String.format("Hello World, %s", name));
 		}
 		

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +26,12 @@ public class UserController {
 
 	@GetMapping("/users/{id}")
 	public User retrieveUser(@PathVariable int id) {
-		return service.findOne(id);
+		User user = service.findOne(id);
+		
+		if(user==null)
+			throw new UserNotFoundException("id-"+ id);	
+		
+		return user;
 	}
 	
 	//Add New User
@@ -35,11 +41,21 @@ public class UserController {
 		 User savedUser = service.save(u);
 		 
 		 //1. Build URI of newly created user
-		 URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(savedUser.getId()).toUri();
+		 URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getId()).toUri();
 		 //2. It will send response code as 201:Created.
 		 return ResponseEntity.created(uri).build(); 
 		 
 		//return service.save(u);
 	}
+	
+	//DELETE User
+	@DeleteMapping("/users/{id}")
+	public void deleteUser(@PathVariable int id) {
+		User user = service.deleteById(id);
+		
+		if(user==null)
+			throw new UserNotFoundException("id-"+ id);		
+	}
+
 
 }

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class UserDaoService {
 	private static List<User> users = new ArrayList<>();
 
-	private static int usersCount = 3;
+	private static int usersCount = 10003;
 
 	//Hardcoded  List
 	static {
@@ -19,19 +19,15 @@ public class UserDaoService {
 		users.add(new User(10003, "Reena Joshi", new Date()));
 	}
 
-	//Utlilities methods
+	
+	
+	//findAll Users
 	public List<User> findAll() {
 		return users;
 	}
 
-	public User save(User user) {
-		if (user.getId() == null) {
-			user.setId(++usersCount);
-		}
-		users.add(user);
-		return user;
-	}
-
+	
+	//Find Specific user
 	public User findOne(int id) {
 		for (User user : users) {
 			if (user.getId() == id) {
@@ -40,5 +36,16 @@ public class UserDaoService {
 		}
 		return null;
 	}
+	
+	//Save new User
+	public User save(User user) {
+		if (user.getId() == null) {
+			user.setId(++usersCount);
+		}
+		users.add(user);
+		return user;
+	}
+	
+	//Delete User
 
 }

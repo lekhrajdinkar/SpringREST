@@ -10,6 +10,8 @@ public class User
 	private String name;
 
 	private Date birthDate;
+	
+	public User() {}
 
 	public User(Integer id, String name, Date birthDate) {
 		super();

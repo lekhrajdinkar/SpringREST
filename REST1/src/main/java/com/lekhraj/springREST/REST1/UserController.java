@@ -29,12 +29,15 @@ public class UserController {
 	}
 	
 	//Add New User
+	//3. Now returning ResponseEntity.
 	@PostMapping("/users")
-	public void save(@RequestBody User u) {
+	public ResponseEntity<Object> save(@RequestBody User u) {
 		 User savedUser = service.save(u);
 		 
+		 //1. Build URI of newly created user
 		 URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(savedUser.getId()).toUri();
-		 ResponseEntity.created(uri); //It will send response code as 201:Created.
+		 //2. It will send response code as 201:Created.
+		 return ResponseEntity.created(uri).build(); 
 		 
 		//return service.save(u);
 	}

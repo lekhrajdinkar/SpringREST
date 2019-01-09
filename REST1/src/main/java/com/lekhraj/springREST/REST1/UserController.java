@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.lekhraj.springREST.REST2.security.basic.AuthenticationBean;
+
 @RestController
 public class UserController {
 
@@ -56,6 +58,13 @@ public class UserController {
 		if(user==null)
 			throw new UserNotFoundException("id-"+ id);		
 	}
+	
+	//----- Basic Auth ------
+	@GetMapping(path = "/basicauth")
+	public AuthenticationBean helloWorldBean() {
+		//throw new RuntimeException("Some Error has Happened! Contact Support at ***-***");
+		return new AuthenticationBean("You are authenticated");
+	}	
 
 
 }

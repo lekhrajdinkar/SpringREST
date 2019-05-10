@@ -12,8 +12,12 @@ public class FundConfiguration {
 	private String objective;
 	private int type;
 	private boolean active;
+	private String env;
 	
 	//getter
+	public String getEnv() {
+		return env;
+	}
 	public String getName() {
 		return name;
 	}
@@ -27,6 +31,9 @@ public class FundConfiguration {
 		return active;
 	}
 	//setter
+	public void setEnv(String env) {
+		this.env = env;
+	}
 	public void setName(String name) {
 		this.name = name;
 	}

@@ -4,6 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 //convinient way to read from  appl.properties
+
 @Component
 @ConfigurationProperties("fund-ms")
 public class FundConfiguration {

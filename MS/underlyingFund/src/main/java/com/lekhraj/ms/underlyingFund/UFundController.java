@@ -3,6 +3,7 @@ package com.lekhraj.ms.underlyingFund;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -10,6 +11,9 @@ public class UFundController {
 	
 	@Autowired
 	Environment env;
+	
+	@Autowired
+	UFundJPARepository repo;
 
 	@GetMapping("hardcoded-uf")
 	public UFund getHardcodedUFund() {
@@ -17,5 +21,10 @@ public class UFundController {
 		return new UFund("NPF", env.getProperty("uf.ms.default.fund.name"), true, "dev-1", 
 				Integer.parseInt(env.getProperty("local.server.port"))); //notice local word
 		
+	}
+	
+	@GetMapping("name/{name}")
+	public UFund getUFundByName(@PathVariable String name) {
+		return repo.findByName(name);
 	}
 }

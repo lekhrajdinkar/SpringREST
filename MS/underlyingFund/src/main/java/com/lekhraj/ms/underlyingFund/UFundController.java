@@ -11,10 +11,11 @@ public class UFundController {
 	@Autowired
 	Environment env;
 
-	@GetMapping
+	@GetMapping("hardcoded-uf")
 	public UFund getHardcodedUFund() {
 		
-		return new UFund("NPF", "TDF10", true, "dev-1", Integer.parseInt(env.getProperty("local.server.port")));
+		return new UFund("NPF", env.getProperty("uf.ms.default.fund.name"), true, "dev-1", 
+				Integer.parseInt(env.getProperty("local.server.port"))); //notice local word
 		
 	}
 }

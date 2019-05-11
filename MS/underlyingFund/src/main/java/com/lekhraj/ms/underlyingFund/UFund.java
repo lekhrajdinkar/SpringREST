@@ -1,6 +1,14 @@
 package com.lekhraj.ms.underlyingFund;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="u_fund")
 public class UFund {
+	
+	@Id private int id;
 	private String name;
 	private String parentFund;
 	private boolean active;
@@ -58,6 +66,14 @@ public class UFund {
 
 	public void setPort(int port) {
 		this.port = port;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	

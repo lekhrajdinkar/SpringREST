@@ -15,6 +15,8 @@ public class UFund {
 	private String env;
 	private int port;
 	
+	private float targetPercent;
+	
 	
 	public UFund(String name, String parentFund, boolean active, String env, int port) {
 		super();
@@ -74,6 +76,14 @@ public class UFund {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public float getTargetPercent() {
+		return targetPercent;
+	}
+
+	public void setTargetPercent(float targetPercent) {
+		this.targetPercent = targetPercent;
 	}
 	
 	

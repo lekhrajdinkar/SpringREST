@@ -14,7 +14,7 @@ public class TargetController {
 	
 	@GetMapping("ufund/{ufund}")
 	public Target getTargetPercentageDummy(@PathVariable String ufund) {
-		return new Target(1001, 80, ufund, Integer.parseInt(env.getProperty("local.server.port")))	;
+		return new Target(1001, Integer.parseInt(env.getProperty("default.percentage")), ufund, Integer.parseInt(env.getProperty("local.server.port")))	;
 	}
 
 }

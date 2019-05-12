@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.lekhraj.ms.underlyingFund.feign.TargetServiceProxy;
 import com.lekhraj.ms.underlyingFund.model.Target;
 
 @RestController
@@ -19,6 +20,9 @@ public class UFundController {
 	
 	@Autowired
 	UFundJPARepository repo;
+	
+	@Autowired
+	TargetServiceProxy targetServiceProxy; //feign
 
 	@GetMapping("hardcoded-uf")
 	public UFund getHardcodedUFund() {
@@ -36,9 +40,14 @@ public class UFundController {
 		String endpoint = env.getProperty("target.service.endpoint");
 		String url = endpoint+"/ufund/"+name;
 		
-		//Invoke TargetService
+		//Invoke TargetService - way1 - using RestTemplate
 		ResponseEntity<Target> re = new RestTemplate().getForEntity(url, Target.class);
 		Target response = re.getBody();
+
+		//Invoke TargetService - way2 - using Feign
+		response = targetServiceProxy.getTargetPercentageDummy(name);
+		
+		
 		ufund.setTargetPercent(response.getTargetPercentage());
 		ufund.setTargetMSPort(response.getPort());
 		return ufund;

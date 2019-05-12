@@ -2,8 +2,10 @@ package com.lekhraj.ms.underlyingFund;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
+@EnableFeignClients("com.lekhraj.ms.underlyingFund")
 public class UnderlyingFundApplication {
 
 	public static void main(String[] args) {

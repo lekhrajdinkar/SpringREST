@@ -3,6 +3,7 @@ package com.lekhraj.ms.underlyingFund;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="u_fund")
@@ -15,7 +16,7 @@ public class UFund {
 	private String env;
 	private int port;
 	
-	//private float targetPercent;
+	@Transient private float targetPercent; //get this from target service ms.
 	
 	
 	public UFund(String name, String parentFund, boolean active, String env, int port) {
@@ -78,13 +79,13 @@ public class UFund {
 		this.id = id;
 	}
 
-//	public float getTargetPercent() {
-//		return targetPercent;
-//	}
-//
-//	public void setTargetPercent(float targetPercent) {
-//		this.targetPercent = targetPercent;
-//	}
+	public float getTargetPercent() {
+		return targetPercent;
+	}
+
+	public void setTargetPercent(float targetPercent) {
+		this.targetPercent = targetPercent;
+	}
 	
 	
 	

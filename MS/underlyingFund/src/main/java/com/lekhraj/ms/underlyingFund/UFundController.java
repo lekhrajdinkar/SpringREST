@@ -25,6 +25,10 @@ public class UFundController {
 	
 	@GetMapping("name/{name}")
 	public UFund getUFundByName(@PathVariable String name) {
-		return repo.findByName(name);
+		UFund ufund =  repo.findByName(name);
+		
+		//get target
+		ufund.setTargetPercent(50);
+		return ufund;
 	}
 }

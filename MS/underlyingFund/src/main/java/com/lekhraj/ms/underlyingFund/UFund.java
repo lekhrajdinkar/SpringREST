@@ -17,7 +17,7 @@ public class UFund {
 	private int port;
 	
 	@Transient private float targetPercent; //get this from target service ms.
-	
+	@Transient private int targetMSPort; //get this from target service ms.
 	
 	public UFund(String name, String parentFund, boolean active, String env, int port) {
 		super();
@@ -28,9 +28,19 @@ public class UFund {
 		this.port = port;
 	}
 
+	
+
 	public UFund() {} //default const
 	
 	//g n s
+	public int getTargetMSPort() {
+		return targetMSPort;
+	}
+
+	public void setTargetMSPort(int targetMSPort) {
+		this.targetMSPort = targetMSPort;
+	}
+	
 	public String getName() {
 		return name;
 	}

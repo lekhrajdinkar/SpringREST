@@ -40,6 +40,7 @@ public class UFundController {
 		ResponseEntity<Target> re = new RestTemplate().getForEntity(url, Target.class);
 		Target response = re.getBody();
 		ufund.setTargetPercent(response.getTargetPercentage());
+		ufund.setTargetMSPort(response.getPort());
 		return ufund;
 	}
 }

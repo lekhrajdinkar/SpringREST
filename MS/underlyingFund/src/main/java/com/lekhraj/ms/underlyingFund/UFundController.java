@@ -36,11 +36,9 @@ public class UFundController {
 	public UFund getUFundByName(@PathVariable String name) {
 		UFund ufund =  repo.findByName(name);
 		
-		//set target
+		//Invoke TargetService - way1 - using RestTemplate
 		String endpoint = env.getProperty("target.service.endpoint");
 		String url = endpoint+"/ufund/"+name;
-		
-		//Invoke TargetService - way1 - using RestTemplate
 		ResponseEntity<Target> re = new RestTemplate().getForEntity(url, Target.class);
 		Target response = re.getBody();
 

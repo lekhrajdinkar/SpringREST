@@ -60,6 +60,12 @@
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
 		
+		<!-- Step 22 Ribbon : Load balancing-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+		</dependency>
+		
 	</dependencies>
 
 	<dependencyManagement>

@@ -1,3 +1,9 @@
+### Order of execution:
+1. Eureka
+2. cloud Config
+3. Zuul gateway
+4. ms1, ms2, ms3
+
 ## STEP 30
 ### API gateway
 

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.lekhraj.ms.underlyingFund.feign.TargetServiceProxy;
+import com.lekhraj.ms.underlyingFund.feign.TargetServiceZuulProxy;
 import com.lekhraj.ms.underlyingFund.model.Target;
 
 @RestController
@@ -23,6 +24,9 @@ public class UFundController {
 	
 	@Autowired
 	TargetServiceProxy targetServiceProxy; //feign
+	
+	@Autowired
+	TargetServiceZuulProxy targetServiceZuulProxy; //feign via zuul
 
 	@GetMapping("hardcoded-uf")
 	public UFund getHardcodedUFund() {
@@ -42,9 +46,11 @@ public class UFundController {
 		ResponseEntity<Target> re = new RestTemplate().getForEntity(url, Target.class);
 		Target response = re.getBody();
 
-		//Invoke TargetService - way2 - using Feign
+		//Invoke TargetService - way2.1 - using Feign without gateway... direct
 		response = targetServiceProxy.getTargetPercentageDummy(name);
 		
+		//Invoke TargetService - way2.2 - using Feign via zuul gateway
+		response = targetServiceZuulProxy.getTargetPercentageDummy(name);
 		
 		ufund.setTargetPercent(response.getTargetPercentage());
 		ufund.setTargetMSPort(response.getPort());

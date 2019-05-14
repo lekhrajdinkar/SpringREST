@@ -1,6 +1,8 @@
 package com.lekhraj.ms.underlyingFund;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,8 @@ import com.lekhraj.ms.underlyingFund.model.Target;
 
 @RestController
 public class UFundController {
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	Environment env;
@@ -38,6 +42,9 @@ public class UFundController {
 	
 	@GetMapping("name/{name}")
 	public UFund getUFundByName(@PathVariable String name) {
+		
+		logger.info("uf-Fund-service --> {}", name);//sleuth id
+		
 		UFund ufund =  repo.findByName(name);
 		
 		//Invoke TargetService - way1 - using RestTemplate

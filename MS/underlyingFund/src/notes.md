@@ -91,13 +91,33 @@ Don't worry this sounds complex in the next steps we would start with implementi
 
 > /usr/local/sbin/rabbitmq-server
 
-2. download Zipkip jar and run it along with rabbit MQ
+2. download Zipkin jar and run it along with rabbit MQ
 
->  RABBIT_URI=ampi://localhost java -jar zipkin-server-2.12.9-exec.jar
+>  RABBIT_URI=amqp://localhost java -jar zipkin-server-2.12.9-exec.jar
 
->  RABBIT_URI=ampi://localhost java -jar ./Documents/Github/zipkin-server-2.12.9-exec.jar
+>  RABBIT_URI=amqo://localhost java -jar ./Documents/Github/zipkin-server-2.12.9-exec.jar
 
-3. 
+3. Add dependencies in ms/s:
+
+```
+<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.amqp</groupId>
+			<artifactId>spring-rabbit</artifactId>
+		</dependency>
+```
+
+4. launch : 
+- http://localhost:9411/zipkin/
+- http://localhost:8761/ - eureka
+
+5. side notes - unix commands
+
+> lsof -n | grep LISTEN
+> lsof -n -i4TCP:[PORT] | grep LISTEN | awk '{ print $2 }' | xargs kill
 
 
 

@@ -83,5 +83,23 @@ And we would be able to look through the different requests and find what happen
 
 Don't worry this sounds complex in the next steps we would start with implementing spring cloud sleuth and after that we would start implementing zipkin
 
+---
+
+# ms > rabbitMQ > ZipkinTacingServer(springBoot project)
+- Can create ZipkinTacingServer(springBoot project) after SB 2.0
+1. Start Rabbit MQ
+
+> /usr/local/sbin/rabbitmq-server
+
+2. download Zipkip jar and run it along with rabbit MQ
+
+>  RABBIT_URI=ampi://localhost java -jar zipkin-server-2.12.9-exec.jar
+
+>  RABBIT_URI=ampi://localhost java -jar ./Documents/Github/zipkin-server-2.12.9-exec.jar
+
+3. 
+
+
+
 
 
